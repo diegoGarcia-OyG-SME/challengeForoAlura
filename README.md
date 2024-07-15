@@ -1,0 +1,1 @@
+Referir al archivo adjunto para leer las caracteristicas: [API de Gestión de Temas del Foro readme.docx](https://github.com/user-attachments/files/16241144/API.de.Gestion.de.Temas.del.Foro.readme.docx)
