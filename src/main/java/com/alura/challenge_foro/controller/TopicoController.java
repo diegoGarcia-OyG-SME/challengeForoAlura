@@ -40,13 +40,22 @@ public class TopicoController {
 
     @PutMapping
     @Transactional
-    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarMedico datosActualizarMedico) {
+    public ResponseEntity actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico) {
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
-        medico.actualizarDatos(datosActualizarMedico);
-        return ResponseEntity.ok(new DatosRespuestaMedico(medico.getId(), medico.getNombre(), medico.getEmail(),
-                medico.getTelefono(), medico.getEspecialidad().toString(),
-                new DatosDireccion(medico.getDireccion().getCalle(), medico.getDireccion().getDistrito(),
-                        medico.getDireccion().getCiudad(), medico.getDireccion().getNumero(),
-                        medico.getDireccion().getComplemento())));
+        topico.actualizarDatos(datosActualizarTopico);
+        return ResponseEntity.ok(new DatosRespuestaTopico(topico.getId(), topico.getTitulo(), topico.getMensaje(), topico.getFecha()));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DatosRegistroTopico> detalleTopico(@PathVariable Long id) {
+        Topico topico = topicoRepository.getReferenceById(id);
+        return ResponseEntity.ok(new DatosRegistroTopico(topico.getTitulo(), topico.getMensaje(), topico.getFecha(), topico.getAutor_id(), topico.getCurso()));
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity eliminarTopico(@PathVariable Long id) {
+        topicoRepository.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

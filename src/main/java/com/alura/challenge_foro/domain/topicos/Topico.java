@@ -1,5 +1,4 @@
 package com.alura.challenge_foro.domain.topicos;
-import com.alura.challenge_foro.domain.usuarios.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -34,4 +33,16 @@ public Topico(DatosRegistroTopico datosRegistroTopico){
     this.autor_id = datosRegistroTopico.autor();
     this.curso = datosRegistroTopico.curso();
 }
+
+    public void actualizarDatos(DatosActualizarTopico datosActualizarTopico) {
+        if (datosActualizarTopico.titulo() != null) {
+            this.titulo = datosActualizarTopico.titulo();
+        }
+        if (datosActualizarTopico.mensaje() != null) {
+            this.mensaje = datosActualizarTopico.mensaje();
+        }
+        if (datosActualizarTopico.curso() != null) {
+            this.curso = datosActualizarTopico.curso();
+        }
+    }
 }
